@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body style="height:4000px">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <div id="myDiv" align="left" my_special_attribute="hello!"></div>
+        <ul id="myList"></ul>
+        <div id="scroll"  style="width:100px;height:100px;margin-top:3000px;background:red"></div>
+         <input type="button" value="Click Me" id="btn">
+        <input type="text" size="25" maxlength="50" value="initial value">
+        <textarea rows="5" cols="5" id="textInput">initial value</textarea> 
+        <input type="text" name="tel1" id="txtTel1" maxlength="3">
+        <input type="text" name="tel2" id="txtTel2" maxlength="3">
+        <input type="text" name="tel3" id="txtTel3" maxlength="4">
+        <div class="editable" id="richedit" contenteditable></div>
+        <script>
+            window.onload = function(){
+                var ul = document.getElementsByTagName('ul')[0];
+                console.log(ul.hasChildNodes())
+                var div = document.getElementById('myDiv');
+                console.log(div.my_special_attribute)
+                console.log(div.getAttribute('my_special_attribute'))
+
+                var element = document.createElement("div");
+                element.className = "message";
+                var textNode = document.createTextNode("Hello world!");
+                element.appendChild(textNode);
+                var anotherTextNode = document.createTextNode("Yippee!");
+                element.appendChild(anotherTextNode);
+                document.body.appendChild(element);
+
+                // 虚拟dom 的原理
+                var fragment = document.createDocumentFragment();
+                var ul = document.getElementById("myList");
+                var li = null;
+                for (var i=0; i < 3; i++){
+                    li = document.createElement("li");
+                  li.appendChild(document.createTextNode("Item " + (i+1)));
+                    fragment.appendChild(li);
+                }
+                ul.appendChild(fragment);
+                document.onscroll = function(){
+                    document.getElementById('scroll').scrollIntoView()
+                }
+                console.log(document.documentElement.scrollHeight)
+
+                function hander(event){
+                    var e = event || window.event;
+                    console.log(this === e.currentTarget)
+                }
+
+                document.getElementById('btn').onclick = hander;
+                // document.getElementById('textInput').select()
+                var textInput = document.getElementById('textInput')
+                textInput.addEventListener('select',function(){
+                    console.log(getSelectedText(textInput))
+                })
+                
+                function getSelectedText(textbox){
+                    return textbox.value.substring(textbox.selectionStart, textbox.selectionEnd);
+                }
+
+                 var e = /[^\d]/;
+                 console.log(e.test('a')) 
+
+                 var div = document.getElementById("richedit");
+                div.contentEditable = "true";
+ 
+            }
+
+            // 切换页面修改title
+            document.body.onfocus = function(){
+                 document.title = '这里是网站标题';
+            };
+            document.body.onblur = function(){
+                document.title = 'i miss you';
+            };
+        </script>
+</html>

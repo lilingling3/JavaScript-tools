@@ -290,3 +290,105 @@ function getCookie(name) {
 function unsetCookie(name) {
 	document.cookie = name + "= ; expires=" + new Date(0);
 }
+
+// 伪数组转成正数
+function convertToArray(nodes){
+	var array = null;
+	try {
+		array = Array.prototype.slice.call(nodes, 0); //针对非 IE 浏览器  ie8及更早不支持
+	} catch (ex) {
+		array = new Array();
+		for (var i=0, len=nodes.length; i < len; i++){
+		array.push(nodes[i]);
+		}
+	}
+	return array;
+}
+
+// 添加script 标签
+function loadScript(url){
+	var script = document.createElement("script");
+	script.type = "text/javascript";
+	script.src = url;
+	document.body.appendChild(script);
+}
+
+// 计算元素到页面左边的距离
+function getElementLeft(element){
+	var actualLeft = element.offsetLeft;
+	var current = element.offsetParent;
+	while (current !== null){
+		actualLeft += current.offsetLeft;
+		current = current.offsetParent;
+	}
+	return actualLeft;
+}
+// 计算元素到页面顶部的距离
+function getElementTop(element){
+	var actualTop = element.offsetTop;
+	var current = element.offsetParent;
+	while (current !== null){
+		actualTop += current. offsetTop;
+		current = current.offsetParent;
+	}
+	return actualTop;
+}
+
+function getRect (element){
+	var rect = element.getBoundingClientRect();
+
+    var top = document.documentElement.clientTop;
+
+    var left= document.documentElement.clientLeft;
+
+    return{
+
+        top    :   rect.top - top,
+
+        bottom :   rect.bottom - top,
+
+        left   :   rect.left - left,
+
+        right  :   rect.right - left
+
+    }
+}
+// 使用 到页面顶部距离模拟 getBoundingClientRect() 四个值
+function getRectInfo(element){
+	// 滚动条滚动距离
+	var scrollTop = document.documentElement.scrollTop;
+	var scrollLeft = document.documentElement.scrollLeft;
+
+	var actualLeft = getElementLeft(element);
+	var actualTop = getElementTop(element);
+	return {
+		left: actualLeft - scrollLeft, // 距离视口左侧的距离
+		right: actualLeft + element.offsetWidth - scrollLeft, // 元素右侧到视口左侧的距离
+		top: actualTop - scrollTop, // 距离视口顶部距离
+		bottom: actualTop + element.offsetHeight - scrollTop // 元素最下方到视口上方的距离
+	}
+}
+
+// 获得选取文本框选取的值
+function getSelectedText(textbox){
+	if (typeof textbox.selectionStart == "number"){
+		return textbox.value.substring(textbox.selectionStart,textbox.selectionEnd);
+	} else if (document.selection){
+		return document.selection.createRange().text;
+	}
+}
+// 获取粘贴板的数据
+function getClipboardText(event){
+	var clipboardData = (event.clipboardData || window.clipboardData);
+	return clipboardData.getData("text");
+}
+
+function getQueryString(url){
+	if (typeof url == "string"){ // 通过检查类型确保安全
+		var pos = url.indexOf("?");
+		if (pos > -1){
+			return url.substring(pos +1);
+		}
+	}
+	return "";
+}
