@@ -1,0 +1,23 @@
+{
+  "name": "javascript-tools",
+  "version": "1.0.0",
+  "description": "",
+  "main": "ajax.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lilingling3/JavaScript-tools.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lilingling3/JavaScript-tools/issues"
+  },
+  "homepage": "https://github.com/lilingling3/JavaScript-tools#readme",
+  "dependencies": {
+    "co": "^4.6.0",
+    "thunkify": "^2.1.2"
+  }
+}
