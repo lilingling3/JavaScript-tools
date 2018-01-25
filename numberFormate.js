@@ -155,5 +155,36 @@ var numberTOFix = [1,2,3,4].map(i=>i.toLocaleString('zh-Hans-CN-u-nu-hanidec',{u
 console.log(numberTOFix);
 console.log([1, 2].toLocaleString()); // 1,2
 
+function formatMoney(s, type) {  
+  if (/[^0-9\.]/.test(s))  
+      return "0";  
+  if (s == null || s == "")  
+      return "0";  
+  s = s.toString().replace(/^(\d*)$/, "$1.");  
+  s = (s + "00").replace(/(\d*\.\d\d)\d*/, "$1");  
+  s = s.replace(".", ",");  
+  var re = /(\d)(\d{3},)/;  
+  while (re.test(s))  
+      s = s.replace(re, "$1,$2");  
+  s = s.replace(/,(\d\d)$/, ".$1");  
+  if (type == 0) {// 不带小数位(默认是有小数位)
+      var a = s.split(".");  
+      if (a[1] == "00") {  
+          s = a[0];  
+      }  
+  }  
+  return s;  
+}
+console.log('处理金额')
+console.log(formatMoney('13222222',3)); // string  13,222,222.00
 
+function format_number(n){  
+  var b=parseInt(n).toString();  
+  var len=b.length;  
+  if(len<=3){return b;}  
+  var r=len%3;  
+  return r>0?b.slice(0,r)+","+b.slice(r,len).match(/\d{3}/g).join(","):b.slice(r,len).match(/\d{3}/g).join(",");  
+}  
+
+console.log(format_number('4524324234')); // 4,524,324,234
 
