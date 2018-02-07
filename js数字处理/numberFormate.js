@@ -188,3 +188,12 @@ function format_number(n){
 
 console.log(format_number('4524324234')); // 4,524,324,234
 
+/**
+ *数字 去掉千位符合，用于数字比较的时候
+ * 
+ */
+function commafyback(num) {
+  var x = num.split(',');
+  return parseFloat(x.join(""));
+};
+

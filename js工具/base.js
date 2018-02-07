@@ -1,6 +1,4 @@
-﻿
-
-//前台调用
+﻿//前台调用
 var $ = function (args) {
 	return new Base(args);
 }

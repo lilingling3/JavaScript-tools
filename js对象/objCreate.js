@@ -37,12 +37,6 @@ console.log(Person.prototype) // {}
   
   隐式原形 指向 创建这个对象的函数（contructor）的prototype
   显示原形 用来 实现基于原形的继承与属性的共享
-  
-
-
-
-
-
  * 
  */
 
@@ -53,30 +47,35 @@ console.log(Person.prototype) // {}
     Person.call(o1);
  */
 
- /**
-  * 第四种方式创建过程  
-    基于原有的对象 创建新对象
+/**
+ * 第四种方式创建过程  
+   基于原有的对象 创建新对象
 
-  Object.create =  function (o) { //function 定义跟object定义
-    var F = function () {};
-    F.prototype = o;
-    return new F();
-  };
-  
-  通过这个方式我们不能通过外部访问它的构造函数
+ Object.create =  function (o) { //function 定义跟object定义
+   var F = function () {};
+   F.prototype = o;
+   return new F();
+ };
+ 
+ 通过这个方式我们不能通过外部访问它的构造函数
 
-  */
+ */
 
 // 第四种方式
-var obj4 = Object.create(Person); 
+var obj4 = Object.create(Person);
 console.log(obj4.__proto__); // [Function: Person]
 console.log(obj4.constructor) // [Function: Function]
 console.log(Person.prototype) // {}
 
-var f = new Person(); 
+var f = new Person();
 console.log(f.__proto__ === Person.prototype); // true
 console.log(Person.prototype); //{}
 console.log(f.__proto__); // {}
 console.log(Person.prototype.__proto__ == Object.prototype)
 console.log(f.constructor) // [Function: Person]
+
+
+console.log(typeof null)  // object
+console.log(null instanceof Object ) // false
+
 
