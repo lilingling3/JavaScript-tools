@@ -57,4 +57,4 @@ let foo3 = {
 let bar3 = JSON.parse(JSON.stringify(foo3)); // 伟大的用处
 foo3.a ++;
 console.log(foo3.a) // 2
-console.log(bar3.a) // 
+console.log(bar3.a) // 1

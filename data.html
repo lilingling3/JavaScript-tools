@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+</body>
+<script>
+  var app = document.getElementById('app');
+  
+  var j = 1;
+  // function showDom(number){
+  //   console.log(`渲染${j}次`)
+  //   for(var i=0;i<number;i++){
+  //     var span = document.createElement('span')
+  //     span.innerHTML = i;
+  //     app.appendChild(span)
+  //   }
+  // }
+  // showDom(30000)
+
+  var fragment = document.createDocumentFragment();
+  function showDom2(number){
+    console.log(`渲染${j}次`)
+    for(var i=0;i<number;i++){
+      var span = document.createElement('span')
+      span.innerHTML = i;
+      fragment.appendChild(span)
+    }
+    app.appendChild(fragment)
+  }
+  showDom2(30000)
+
+</script>
+</html>
