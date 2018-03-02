@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <button id="btn">改变环境</button>
+  <button id="btn2">查看环境</button>
+  <button id="btn3">根据环境改变地址</button>
+  <script>
+    var btn = document.getElementById('btn');
+    var btn2 = document.getElementById('btn2');
+    var btn3 = document.getElementById('btn3');
+    var defaultHostKey = 'prod';
+    const apiHost = {
+      prod: 'https://dccmapi.boldseas.com',
+      //prod:'https://dccmtest.boldseas.com',
+      test: 'https://dccmtest.boldseas.com',
+      dev: 'https://dccmtest.boldseas.com',
+      hostKey: defaultHostKey
+    };
+    // 封装环境用于切换环境
+    const key_nextKey = { dev: 'prod', test: 'prod', prod: 'test' };
+
+    var changeApiHost = () => {
+      var key = key_nextKey[apiHost.hostKey];
+      apiHost.hostKey = key;
+      console.log('改变环境为' + apiHost.hostKey)
+    };
+    btn.onclick = changeApiHost;
+    var getApiHostKey = () => {
+      console.log('获取当前key' + apiHost.hostKey)
+      return apiHost.hostKey;
+    };
+    btn2.onclick = getApiHostKey;
+    var apiHostTrial = {
+      prod: 'https://fcs.gacfcasales.com',
+      test: 'https://fcstest.gacfcasales.com',
+      dev: 'https://fcstest.gacfcasales.com',
+    }
+
+    btn3.onclick = function () {
+      console.log(apiHostTrial[getApiHostKey()])
+    }
+  </script>
+</body>
+
+</html>
