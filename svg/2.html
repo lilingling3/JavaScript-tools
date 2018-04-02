@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<html xmlns="http://www.w3.org/1999/xhtml">  
+<head>  
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />  
+<title>无标题文档</title>  
+<style>  
+body{background:#000;}  
+.svgs{width:400px;height:400px;background:#fff;}  
+</style>  
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+</head>  
+  
+<body>  
+  <div class="svgs">  
+</div>  
+</body>  
+</html>  
+<script type="text/javascript">  
+//协议  
+var svgNS = "http://www.w3.org/2000/svg";     
+//封装方法创建标签  
+function createTag(tag,tagAttr){  
+    var oTag=document.createElementNS(svgNS,tag);  
+    for(var attr in tagAttr){  
+        oTag.setAttribute(attr,tagAttr[attr]);  
+    };  
+    return oTag;  
+};  
+//画圆弧的路径  
+function drawArcByRadiusDeg(startX, startY, r, deg, clockwise) {  
+    var cw = typeof clockwise !== 'undefined' ? clockwise : 1;  
+    console.log("startX "+startX);
+    console.log("startY "+startY);
+    console.log("cw "+cw);
+    var x = startX - r + r*Math.cos(deg*Math.PI/180);  
+    var y = startY + (1===cw ? 1 : -1)*r*Math.sin(deg*Math.PI/180);
+    console.log("X "+x);
+    console.log("Y "+y);
+    console.log('deg'+deg);
+    var bigOrSmall = deg>180 ? 1 : 0;  
+    return "M " + startX +" "+ startY + " A "+ r +" " + r + " 0 " + bigOrSmall + " " +cw+ " " + x + " " + y
+   // return "M " + x +" "+ y + " A "+ r +" " + r + " 0 " + bigOrSmall + " " +cw+ " " + startX + " " +startY
+} 
+
+
+//画图  
+function drawPath(data){  
+    var x=300,y=200,r = 100,clockwise=1;//x,y圆心位置 r圆弧的半径 clockwise顺时针 0逆时针
+    var Percentage=data*359.9999;  // 360度 
+    var circle1=createTag('path',{'d':drawArcByRadiusDeg(x, y, r, 359.99, clockwise),'stroke':"#ccc",'fill-opacity':"0",'stroke-width':"50"});  
+    var circle2=createTag('path',{'d':drawArcByRadiusDeg(x, y, r, Percentage, clockwise),'stroke':"#2196f3",'fill-opacity':"0",'stroke-width':"50","stroke-linecap":'round'});  
+    var text1=createTag('text',{'x':x-50,'y':y-10,'fill':"red",'font-size':"20",'text-anchor':"middle"});  
+    var text2=createTag('text',{'x':x-50,'y':y+20,'fill':"#333",'font-size':"20",'text-anchor':"middle"});  
+    // $(text1).html(data*100+'%');  
+    // $(text2).html('好评率');  
+    $(oSvg).append(circle1);  
+    $(oSvg).append(circle2);  
+    // $(oSvg).append(text1);  
+    // $(oSvg).append(text2);  
+}  
+  
+//创建svg  
+var oSvg=createTag('svg',{"width":"100%","height":"100%",'xmlns':svgNS});  
+$('.svgs').append(oSvg);  
+  
+//调用  
+drawPath(0.50);  
+</script>  

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+  <title>Document</title>
+  <style>
+    .zh-rt-main {
+      position: relative;
+      width: 436px;
+      height: 436px;
+      margin: -36px auto 0;
+    }
+
+    .zh-rt-main .zh-node {
+      display: block;
+      position: absolute;
+      z-index: 2;
+      width: 116px;
+      font-size: 12px;
+      text-align: center;
+      opacity: 0;
+    }
+
+    .zh-rt-main .zh-node:after {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 1px;
+      margin-top: 5px;
+    }
+
+    .zh-rt-main .zh-node .zh-name,
+    .zh-rt-main .zh-node .zh-percent-num {
+      display: block;
+    }
+
+    .zh-rt-main .zh-node-1 {
+      left: 160px;
+      top: 40px;
+      -webkit-animation: fadeIn .3s ease-out .1s forwards;
+      animation: fadeIn .3s ease-out .1s forwards;
+    }
+
+    .zh-rt-main .zh-node-2 {
+      right: 70px;
+      top: 82px;
+      -webkit-animation: fadeIn .3s ease-out .2s forwards;
+      animation: fadeIn .3s ease-out .2s forwards;
+    }
+
+    .zh-rt-main .zh-node-3 {
+      right: 20px;
+      top: 138px;
+      -webkit-animation: fadeIn .3s ease-out .3s forwards;
+      animation: fadeIn .3s ease-out .3s forwards;
+    }
+
+    .zh-rt-main .zh-node-4 {
+      right: 0;
+      top: 195px;
+      -webkit-animation: fadeIn .3s ease-out .4s forwards;
+      animation: fadeIn .3s ease-out .4s forwards;
+    }
+
+    .zh-rt-main .zh-node-5 {
+      right: 20px;
+      bottom: 135px;
+      -webkit-animation: fadeIn .3s ease-out .5s forwards;
+      animation: fadeIn .3s ease-out .5s forwards;
+    }
+
+    .zh-rt-main .zh-node-6 {
+      right: 70px;
+      bottom: 75px;
+      -webkit-animation: fadeIn .3s ease-out .6s forwards;
+      animation: fadeIn .3s ease-out .6s forwards;
+    }
+
+    .zh-rt-main .zh-node-7 {
+      left: 160px;
+      bottom: 31px;
+      -webkit-animation: fadeIn .3s ease-out .7s forwards;
+      animation: fadeIn .3s ease-out .7s forwards;
+    }
+
+    .zh-rt-main .zh-node-8 {
+      left: 70px;
+      bottom: 75px;
+      -webkit-animation: fadeIn .3s ease-out .9s forwards;
+      animation: fadeIn .3s ease-out .9s forwards;
+    }
+
+    .zh-rt-main .zh-node-9 {
+      left: 20px;
+      bottom: 135px;
+      -webkit-animation: fadeIn .3s ease-out .8s forwards;
+      animation: fadeIn .3s ease-out .8s forwards;
+    }
+
+    .zh-rt-main .zh-node-10 {
+      left: 0;
+      top: 195px;
+      -webkit-animation: fadeIn .3s ease-out 1s forwards;
+      animation: fadeIn .3s ease-out 1s forwards;
+    }
+
+    .zh-rt-main .zh-node-11 {
+      left: 20px;
+      top: 138px;
+      -webkit-animation: fadeIn .3s ease-out 1.1s forwards;
+      animation: fadeIn .3s ease-out 1.1s forwards;
+    }
+
+    .zh-rt-main .zh-node-12 {
+      left: 70px;
+      top: 82px;
+      -webkit-animation: fadeIn .3s ease-out 1.2s forwards;
+      animation: fadeIn .3s ease-out 1.2s forwards;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="zh-rt-main zh-rt-yellow">
+    <div class="zh-svg-box zh-svg-box-lg">
+      <span class="zh-percent-num">1143/1566</span>
+      <strong class="zh-unit">加油开始</strong>
+      <strong class="zh-percent">99%</strong>
+      <svg width="260" height="260">
+        <circle cx="130" cy="130" r="120" stroke-width="2" filter="url(#outGlow)"></circle>
+        <circle cx="130" cy="130" r="120" stroke-width="10" stroke-linecap="round" transform="matrix(0,-1,1,0,0,260)"></circle>
+      </svg>
+    </div>
+  </div>
+
+  <svg>
+    <filter id="outGlow">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3" />
+      <feMerge>
+        <feMergeNode />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </svg>
+  <script>
+    // 圆环进度条
+    function ringProcessBar() {
+      var radius = 120;
+      var circumference = 2 * radius * Math.PI;
+      $('.zh-rt-main').each(function () {
+        var curProcess = parseFloat($(this).find('.zh-svg-box .zh-percent').text()).toFixed(2) / 100;
+        var dasharray1 = (circumference * (1 - curProcess)).toFixed(2);
+        var dasharray2 = (circumference * curProcess).toFixed(2);
+        $(this).find('.zh-svg-box svg circle:eq(1)').attr('stroke-dasharray', dasharray2 + ',' + dasharray1);
+      });
+    }
+    ringProcessBar();
+  </script>
+</body>
+
+</html>
