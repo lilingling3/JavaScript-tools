@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+
+<button id="btn">按钮</button>
+
+  <script>
+// 倒计时
+     var time = 60;
+    var countdown = 60;
+    var show = true;
+    var timeOut;
+   
+    document.getElementById('btn').onclick = function () {  
+      // setTimeout 只会执行一次
+      timeOut = setTimeout(timer, 0);
+      
+    }
+    
+    function timer() {
+      if (countdown === 0) {
+        countdown = time;
+        show = true;
+        // 清除定时器
+        clearTimeout(timeOut)
+      } else {
+        show = false;
+        countdown--;
+        setTimeout(timer, 1000);
+        console.log(countdown)
+      }
+    }
+   
+  
+
+  </script>
+</body>
+
+</html>

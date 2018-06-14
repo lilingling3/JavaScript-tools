@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script type="text/javascript" src="https://cdn.boldseas.com/js/util/qrcode.min.js"></script>
+</head>
+
+<body>
+  <div id="qrcode" style="width:200px; height:200px; display: block;margin: 0 auto"></div>
+
+  <script>
+    var url = 'https://www.baidu.com';
+    function initQrCodeEle() {
+      var ele = document.getElementById("qrcode");
+      // $("#qrcode").empty();
+      ele.innerHTML = '';
+      return new QRCode(ele, { width: 200, height: 200 });
+    }
+
+    function makeCode(qrcodeEle, qrCode) {
+      qrcodeEle.makeCode(qrCode);
+    }
+
+    var qrEle = initQrCodeEle();
+    makeCode(qrEle, url);
+  </script>
+</body>
+
+</html>
