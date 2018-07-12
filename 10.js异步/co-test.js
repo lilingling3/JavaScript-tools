@@ -1,6 +1,6 @@
 
 var myf = require('./my-func');
-var filename = __dirname + '/text';
+var filename = __dirname + '/txt';
 var co = require('co');
 
 // console.log(filename);
@@ -45,48 +45,48 @@ var co = require('co');
 //   console.log(content.toString())
 // }).catch(err=> console.log(err));
 
-// co(myf.readFileTk5(filename)).then(content=>console.log(content)).catch(ex=>console.log(ex))
+co(myf.readFileTk5(filename)).then(content=>console.log(content)).catch(ex=>console.log(ex))
 
 
 
-function* go() {
-  var content1 = yield myf.readFileTk2(filename);//cb => fs.readFile(filename, cb)
-  var content2 = yield myf.readFileTk2(filename);
-  var content3 = yield myf.readFileTk2(filename);
-  return 5;
-}
+// function* go() {
+//   var content1 = yield myf.readFileTk2(filename);//cb => fs.readFile(filename, cb)
+//   var content2 = yield myf.readFileTk2(filename);
+//   var content3 = yield myf.readFileTk2(filename);
+//   return 5;
+// }
 
-try {
-  var gen = go();
-  var ret = gen.next();//ret.done,ret.value
-  ret.value((err, content) => {
-    console.log(content);
-    gen.throw(new Error('gogogogo'))
-    if (!ret.done) {
-      var ret2 = gen.next();
-      ret2.value((err, content) => {
-        console.log(content);
-        if (!ret2.done) {
-          var ret3 = gen.next();
-          ret3.value((err, content) => {
-            console.log(content);
-            if (!ret3.done) {
+// try {
+//   var gen = go();
+//   var ret = gen.next();//ret.done,ret.value
+//   ret.value((err, content) => {
+//     console.log(content);
+//     gen.throw(new Error('gogogogo'))
+//     if (!ret.done) {
+//       var ret2 = gen.next();
+//       ret2.value((err, content) => {
+//         console.log(content);
+//         if (!ret2.done) {
+//           var ret3 = gen.next();
+//           ret3.value((err, content) => {
+//             console.log(content);
+//             if (!ret3.done) {
 
-            } else {
-              console.log('done');
-            }
-          })
-        } else {
+//             } else {
+//               console.log('done');
+//             }
+//           })
+//         } else {
 
-        }
-      })
-    } else {
+//         }
+//       })
+//     } else {
 
-    }
-  })
-} catch (err) {
-  console.log(err.message);
-}
+//     }
+//   })
+// } catch (err) {
+//   console.log(err.message);
+// }
 
 
 

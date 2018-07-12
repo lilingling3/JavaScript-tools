@@ -68,3 +68,12 @@ function isNull( str ){
     if (str == null ||str.toString().trim()=='') return true;
     else return false;
 }
+// 检查手机号码
+function isPhone(str){
+  var reg =  /^(0|86|17951)?(13[0-9]|15[0-9]|16[6]|17[0-9]|18[0-9]|14[56789]|19[89])[0-9]{8}$/;
+  if(reg.test(str)){
+    return true
+  }else{
+    return false
+  }
+}

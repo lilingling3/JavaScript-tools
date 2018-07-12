@@ -22,7 +22,7 @@ exports.readFileTk6 = async (filename) => {
   var content = await exports.readFileTk3(filename);
   return content;
 }
-
+// generate
 exports.readFileTk5 = function* (filename) {
   var content = yield exports.readFileTk1(filename);
   return content;
