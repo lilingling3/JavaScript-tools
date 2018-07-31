@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<style>
+  a{
+    color: red;
+  }
+  #container a{
+    color: yellow;
+  }
+</style>
+<body>
+
+  <div id="container">
+    <a>dd</a>
+  </div>
+  <script>
+    var val = 1;
+    var json = {
+      val: 10,
+      jb1: function () {
+        this.val *= 2
+      }
+    }
+    json.jb1();
+    var db1 = json.jb1;
+    db1();
+    json.jb1.call(window);
+    console.log(window.val + json.val) // 24 处理之后的值
+
+  </script>
+</body>
+
+</html>

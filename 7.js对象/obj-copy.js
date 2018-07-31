@@ -2,8 +2,8 @@
 var obj = {a: 1, b: 2, c: { a: 3 },d: [4, 5]}
 var obj1 = obj
 var obj2 = JSON.parse(JSON.stringify(obj))//深拷贝常用方法
-var obj3 = {...obj}
-var obj4 = Object.assign({},obj)
+var obj3 = {...obj} // 浅拷贝 引用不会拷贝
+var obj4 = Object.assign({},obj) // 浅拷贝 引用不会拷贝
 obj.a = 999
 obj.c.a = -999
 obj.d[0] = 123
