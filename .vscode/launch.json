@@ -1,0 +1,15 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    
+      {
+          "name": "launch",
+          "type": "node",
+          "request": "launch",
+          "program": "${workspaceRoot}/19.ts/ts-debug/dist/main.ts",
+          "args": [],
+          "cwd": "${workspaceRoot}",
+          "protocol": "inspector"
+      }
+  ]
+}
