@@ -22,7 +22,7 @@ B.prototype.a = 1;
 C.prototype.a = 1;
 
 console.log(new A()) // {}
-console.log(new B()) //  a: undefined }
+console.log(new B()) // { a: undefined }
 console.log(new C(2)) // { a: 2 }
 
 
